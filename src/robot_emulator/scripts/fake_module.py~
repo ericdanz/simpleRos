@@ -1,0 +1,16 @@
+#!/usr/bin/env python
+
+from robot_emulator.srv import *
+import rospy
+import sys
+
+
+def handle_boot():
+	rospy.wait_for_service('boot')
+	try:
+		
+	print 'Returning boot response'
+	return BootMessage()
+
+def BootMessage():
+	
