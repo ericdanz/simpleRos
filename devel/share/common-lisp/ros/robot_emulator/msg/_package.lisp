@@ -3,5 +3,15 @@
   (:export
    "<STATE>"
    "STATE"
+   "<BOOTRESPONSE>"
+   "BOOTRESPONSE"
+   "<ERROR>"
+   "ERROR"
+   "<REQUEST>"
+   "REQUEST"
+   "<OUTPUT>"
+   "OUTPUT"
+   "<INPUT>"
+   "INPUT"
   ))
 
