@@ -4,10 +4,11 @@ from robot_emulator.msg import *
 import rospy
 import sys
 
+
 def init():
 	#init with a boot request from all listening modules
 	rospy.init_node('gatekeeper')
-	reqPub = rospy.Publisher(reqs, Request, queue_size=10)
+	reqPub = rospy.Publisher('reqs', Request, queue_size=10)
 	thisRequest = 'boot'
 	rospy.loginfo(thisRequest)
 	reqPub.publish(thisRequest)
@@ -21,6 +22,17 @@ def theSubscriber():
 	rospy.Subscriber('outputs', Output, updateModel)
 	rospy.Subscriber('errors', Error, checkError)
 	rospy.spin()
+
+
+def buildModel(data):
+	pass
+
+def updateModel(data):
+	pass
+
+def checkError(data):
+	pass
+
 
 
 if __name__ == '__main__':

@@ -7,7 +7,7 @@ import sys
 def init():
 	#init with a boot request from all listening modules
 	rospy.init_node('gatekeeper')
-	reqPub = rospy.Publisher(reqs, Request, queue_size=10)
+	reqPub = rospy.Publisher('reqs', Request, queue_size=10)
 	thisRequest = 'boot'
 	rospy.loginfo(thisRequest)
 	reqPub.publish(thisRequest)
@@ -24,8 +24,6 @@ def theSubscriber():
 
 
 if __name__ == '__main__':
-	
 	init()
-	try:
-		theSubscriber()
-	except rospy.ROSInterruptException: pass
+	theSubscriber()
+	
