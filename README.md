@@ -14,3 +14,5 @@ Gate node - talks to a physical serial port (Gate1 talks to UART1, etc)
 Gatekeeper routes commands whole, Gates translate the command into something the module understands based on the API
 
 
+Gatekeeper calibrates (ie changing values of inputs before they go to Gates, or outputs before they go back out into the ROS wilds)??
+
