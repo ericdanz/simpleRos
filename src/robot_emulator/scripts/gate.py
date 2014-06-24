@@ -8,7 +8,6 @@ def theSubscriber():
 	#suscribe to all the topics individually
 	#then call something to respond to any activity
 	r = rospy.Rate(10)
-	rospy.init_node('gate', anonymous=True)
 	#listen to the two topics coming from the robot brain
 	rospy.Subscriber('reqs', Request, parseReq)
 	rospy.Subscriber('inputs', Input, doInput)
@@ -37,6 +36,6 @@ def bootResponder():
 		
 
 if __name__ == '__main__':
-	try:
-		theSubscriber()
-	except rospy.ROSInterruptException: pass
+	rospy.init_node('gate', anonymous=True)
+	theSubscriber()
+
