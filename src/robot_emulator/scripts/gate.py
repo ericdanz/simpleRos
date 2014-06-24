@@ -25,6 +25,7 @@ def parseReq(data):
 def doInput(data):
 	#check the name on the input, if it matches this module
 	#do the input if possible or publish an error
+	pass
 
 def bootResponder():
 	bootPub = rospy.Publisher('boot', BootResponse, queue_size=10)
