@@ -109,7 +109,7 @@ if(NOT "/home/ed/Dropbox/GitHub/simpleRos/devel/include" STREQUAL "")
   endforeach()
 endif()
 
-set(libraries "")
+set(libraries "robot_emulator")
 foreach(library ${libraries})
   # keep build configuration keywords, target names and absolute libraries as-is
   if("${library}" MATCHES "^debug|optimized|general$")
@@ -153,7 +153,7 @@ foreach(t ${robot_emulator_EXPORTED_TARGETS})
   endif()
 endforeach()
 
-set(depends "message_runtime")
+set(depends "roscpp;rospy;std_msgs;message_runtime")
 foreach(depend ${depends})
   string(REPLACE " " ";" depend_list ${depend})
   # the package name of the dependency must be kept in a unique variable so that it is not overwritten in recursive calls
