@@ -24,8 +24,6 @@ def theSubscriber():
 
 
 if __name__ == '__main__':
-	
 	init()
-	try:
-		theSubscriber()
-	except rospy.ROSInterruptException: pass
+	theSubscriber()
+	
