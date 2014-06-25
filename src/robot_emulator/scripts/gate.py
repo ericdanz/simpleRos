@@ -12,19 +12,19 @@ class Gate:
 		rospy.Subscriber('inputs', Input, self.doInput)
 		
 
-	def parseReq(data):
+	def parseReq(self,data):
 		rospy.loginfo('this is parse Req')
 		thisReq = data.request
 		if thisReq == 'boot':
 			rospy.loginfo(thisReq)
-			bootResponder()
+			self.bootResponder()
 
-	def doInput(data):
+	def doInput(self,data):
 		#check the name on the input, if it matches this module
 		#do the input if possible or publish an error
 		pass
 
-	def bootResponder():
+	def bootResponder(self):
 		rospy.loginfo('inside boot responder')
 		bootPub = rospy.Publisher('boot', BootResponse, queue_size=10)
 		#need a name inside the boot message, so this module will

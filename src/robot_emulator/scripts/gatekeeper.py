@@ -25,7 +25,7 @@ class Gatekeeper:
 		reqPub.publish(thisRequest)	
 	'''
 	def buildModel(self,data):
-		pass
+		rospy.loginfo(data.bootresponse)
 
 	def updateModel(self,data):
 		pass
@@ -37,7 +37,7 @@ class Gatekeeper:
 if __name__ == '__main__':
 	rospy.init_node('gatekeeper')
 	gatekeeper = Gatekeeper()
-	gatekeeper.keep()
+	#gatekeeper.keep()
 	rospy.loginfo("Gatekeeper Node Started")
 	rospy.spin()
 	

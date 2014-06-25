@@ -5,45 +5,36 @@ import rospy
 import sys
 
 
-def doInput(data):
-	#check the name on the input, if it matches this module
-	#do the input if possible or publish an error
-	pass
+class Gate:
 
-def bootResponder():
-	rospy.loginfo('inside boot responder')
-	bootPub = rospy.Publisher('boot', BootResponse, queue_size=10)
-	#need a name inside the boot message, so this module will
-	#be able to identify messages sent to itself
-	bootString = BootResponse()
-	bootString.bootresponse = "This is a boot string containing essential info about the module"
-	rospy.loginfo(bootString)
-	bootPub.publish(bootString)
+	def __init__(self):
+		rospy.Subscriber('reqs', Request, self.parseReq)
+		rospy.Subscriber('inputs', Input, self.doInput)
+		
 
-def parseReq(data):
-	rospy.loginfo('inside parse req')
-	thisReq = data.request
-	rospy.loginfo(thisReq)
-	if thisReq == 'boot':
-		bootResponder()
-	
-	#bootResponder()	
-	#further request types can be added	
-	#elif thisReq == ''
+	def parseReq(self,data):
+		rospy.loginfo('this is parse Req')
+		thisReq = data.request
+		if thisReq == 'boot':
+			rospy.loginfo(thisReq)
+			self.bootResponder()
 
+	def doInput(self,data):
+		#check the name on the input, if it matches this module
+		#do the input if possible or publish an error
+		pass
 
-def subscriber():
-	#suscribe to all the topics individually
-	#then call something to respond to any activity
-	#r = rospy.Rate(10)
-	#listen to the two topics coming from the robot brain
-	rospy.init_node('gate', anonymous=True)
-	rospy.Subscriber('reqs', Request, parseReq)
-	rospy.Subscriber('inputs', Input, doInput)
-	rospy.loginfo('this is Subscriber')
-	rospy.spin()
-
+	def bootResponder():
+		rospy.loginfo('inside boot responder')
+		bootPub = rospy.Publisher('boot', BootResponse, queue_size=10)
+		#need a name inside the boot message, so this module will
+		#be able to identify messages sent to itself
+		bootString = BootResponse()
+		bootString.bootresponse = "This is a boot string containing essential info about the module"
+		bootPub.publish(bootString)
 
 if __name__ == '__main__':
-	subscriber()
-
+	rospy.init_node('gate', anonymous=True)
+	gate = Gate()
+	rospy.loginfo("Gate Node Started")
+	rospy.spin()
