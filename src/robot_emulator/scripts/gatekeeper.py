@@ -33,6 +33,11 @@ class Gatekeeper:
 	def checkError(self,data):
 		pass
 
+	def sendReq(self,message):
+		#this will take a message from the rest of the system, sort and translate 
+		#it and send it off to the gates		
+		pass
+
 
 if __name__ == '__main__':
 	rospy.init_node('gatekeeper')
