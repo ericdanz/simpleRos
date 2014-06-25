@@ -4,39 +4,35 @@ from robot_emulator.msg import *
 import rospy
 import sys
 
+class Gatekeeper:
+	
+	def __init__(self):
+		reqPub = rospy.Publisher('reqs', Request, queue_size=10)
+		rospy.Subscriber('boot', BootResponse, self.buildModel)
+		rospy.Subscriber('outputs', Output, self.updateModel)
+		rospy.Subscriber('errors', Error, self.checkError)
 
-def init():
-	#init with a boot request from all listening modules
-	rospy.init_node('gatekeeper')
-	reqPub = rospy.Publisher('reqs', Request, queue_size=10)
-	thisRequest = Request()
-	thisRequest.request = 'boot'
-	rospy.loginfo(thisRequest)
-	reqPub.publish(thisRequest)
+	def keep(self):
+		thisRequest = Request()
+		thisRequest.request = 'boot'
+		rospy.loginfo("Sending Boot Request")
+		reqPub.publish(thisRequest)
+		rospy.spin()	
 
-def theSubscriber():
-	#suscribe to all the topics individually
-	#then call something to respond to any activity
-	r = rospy.Rate(10)
-	#listen to the three topics coming from the modules
-	rospy.Subscriber('boot', BootResponse, buildModel)
-	rospy.Subscriber('outputs', Output, updateModel)
-	rospy.Subscriber('errors', Error, checkError)
-	rospy.spin()
+	def buildModel(self,data):
+		pass
 
+	def updateModel(self,data):
+		pass
 
-def buildModel(data):
-	pass
-
-def updateModel(data):
-	pass
-
-def checkError(data):
-	pass
-
-
+	def checkError(self,data):
+		pass
+		
 
 if __name__ == '__main__':
-	init()
-	theSubscriber()
+	rospy.init_node('gatekeeper')
+	gatekeeper = Gatekeeper()
+	gatekeeper.keep()
+	rospy.loginfo("Gatekeeper Node Started")
+
 	
