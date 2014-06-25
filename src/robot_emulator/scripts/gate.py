@@ -27,7 +27,7 @@ class Gate:
 
 	def bootResponder(self):
 		rospy.loginfo('inside boot responder')
-		bootPub = rospy.Publisher('boot', BootResponse, queue_size=10, latch=True)
+		bootPub = rospy.Publisher('boot', BootResponse, queue_size=1, latch=True)
 		#need a name inside the boot message, so this module will
 		#be able to identify messages sent to itself
 		bootString = BootResponse()
