@@ -8,7 +8,6 @@ def theSubscriber():
 	#suscribe to all the topics individually
 	#then call something to respond to any activity
 	r = rospy.Rate(10)
-	rospy.init_node('gate', anonymous=True)
 	#listen to the two topics coming from the robot brain
 	rospy.Subscriber('reqs', Request, parseReq)
 	rospy.Subscriber('inputs', Input, doInput)
@@ -16,9 +15,13 @@ def theSubscriber():
 	rospy.spin()
 
 def parseReq(data):
-	thisReq = data.data
+	'''thisReq = data.data
+	rospy.loginfo(data)
 	if thisReq == 'boot':
+		rospy.loginfo(thisReq)
 		bootResponder()
+	'''
+	bootResponder()	
 	#further request types can be added	
 	#elif thisReq == ''
 
@@ -28,6 +31,7 @@ def doInput(data):
 	pass
 
 def bootResponder():
+	rospy.loginfo('dude')
 	bootPub = rospy.Publisher('boot', BootResponse, queue_size=10)
 	#need a name inside the boot message, so this module will
 	#be able to identify messages sent to itself
@@ -37,6 +41,6 @@ def bootResponder():
 		
 
 if __name__ == '__main__':
-	try:
-		theSubscriber()
-	except rospy.ROSInterruptException: pass
+	rospy.init_node('gate', anonymous=True)
+	theSubscriber()
+
