@@ -15,7 +15,8 @@ def bootResponder():
 	bootPub = rospy.Publisher('boot', BootResponse, queue_size=10)
 	#need a name inside the boot message, so this module will
 	#be able to identify messages sent to itself
-	bootString = "This is a boot string containing essential info about the module"
+	bootString.Boot()
+	bootString.bootresponse = "This is a boot string containing essential info about the module"
 	rospy.loginfo(bootString)
 	bootPub.publish(bootString)
 
