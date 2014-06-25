@@ -45,10 +45,11 @@ def theSubscriber():
 	rospy.spin()
 
 
-
-		
-
 if __name__ == '__main__':
 	rospy.init_node('gate', anonymous=True)
-	theSubscriber()
+	rospy.Subscriber('reqs', Request, parseReq)
+	rospy.Subscriber('inputs', Input, doInput)
+	rospy.loginfo('this is main')
+	rospy.spin()
+	#theSubscriber()
 
