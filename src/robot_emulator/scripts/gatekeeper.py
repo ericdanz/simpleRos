@@ -8,6 +8,7 @@ import sys
 class Gatekeeper:
 
 	def __init__(self):
+		self.gkmodel = GateKeeperModel()
 		rospy.Subscriber('boot', BootResponse, self.buildModel)
 		rospy.Subscriber('outputs', Output, self.updateModel)
 		rospy.Subscriber('errors', Error, self.checkError)
@@ -27,6 +28,11 @@ class Gatekeeper:
 	'''
 	def buildModel(self,data):
 		rospy.loginfo(data.gatetype)
+		#make sure gatetype conforms to known types before creating a gate model
+		if data.gatetype == 'locomotion':	
+			gmodel = GateModel(data.gatetype)		
+			self.gkmodel.addgate(gmodel)
+		print self.gkmodel.gates
 		
 
 	def updateModel(self,data):
