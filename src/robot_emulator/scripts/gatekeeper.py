@@ -16,14 +16,16 @@ def checkError(data):
 def init():
 	#init with a boot request from all listening modules
 	rospy.init_node('gatekeeper')
-	reqPub = rospy.Publisher('reqs', Request, queue_size=10)
+	reqPub = rospy.Publisher('reqs', Request, queue_size=10, latch=True)
 	thisRequest = Request()
 	thisRequest.request = 'boot'
 	r = rospy.Rate(10)
-	while not rospy.is_shutdown():
-		rospy.loginfo(thisRequest)
-		reqPub.publish(thisRequest)
-		r.sleep()
+	#while not rospy.is_shutdown():
+	#	rospy.loginfo(thisRequest)
+	#	reqPub.publish(thisRequest)
+	#	r.sleep()
+	rospy.loginfo(thisRequest)
+	reqPub.publish(thisRequest)
 
 def theSubscriber():
 	#suscribe to all the topics individually
