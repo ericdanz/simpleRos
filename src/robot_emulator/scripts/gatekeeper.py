@@ -26,6 +26,7 @@ def theSubscriber():
 	#suscribe to all the topics individually
 	#then call something to respond to any activity
 	r = rospy.Rate(10)
+	rospy.loginfo('this is Subscriber')
 	#listen to the three topics coming from the modules
 	rospy.Subscriber('boot', BootResponse, buildModel)
 	rospy.Subscriber('outputs', Output, updateModel)

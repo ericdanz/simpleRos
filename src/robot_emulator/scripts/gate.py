@@ -34,11 +34,12 @@ def parseReq(data):
 	#elif thisReq == ''
 
 
-def theSubscriber():
+def subscriber():
 	#suscribe to all the topics individually
 	#then call something to respond to any activity
-	r = rospy.Rate(10)
+	#r = rospy.Rate(10)
 	#listen to the two topics coming from the robot brain
+	rospy.init_node('gate', anonymous=True)
 	rospy.Subscriber('reqs', Request, parseReq)
 	rospy.Subscriber('inputs', Input, doInput)
 	rospy.loginfo('this is Subscriber')
@@ -46,10 +47,5 @@ def theSubscriber():
 
 
 if __name__ == '__main__':
-	rospy.init_node('gate', anonymous=True)
-	rospy.Subscriber('reqs', Request, parseReq)
-	rospy.Subscriber('inputs', Input, doInput)
-	rospy.loginfo('this is main')
-	rospy.spin()
-	#theSubscriber()
+	subscriber()
 
