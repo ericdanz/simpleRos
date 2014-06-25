@@ -4,6 +4,17 @@ from robot_emulator.msg import *
 import rospy
 import sys
 
+def buildModel(data):
+	pass
+
+def updateModel(data):
+	pass
+
+def checkError(data):
+	pass
+
+
+
 
 def init():
 	#init with a boot request from all listening modules
@@ -23,16 +34,6 @@ def theSubscriber():
 	rospy.Subscriber('outputs', Output, updateModel)
 	rospy.Subscriber('errors', Error, checkError)
 	rospy.spin()
-
-
-def buildModel(data):
-	pass
-
-def updateModel(data):
-	pass
-
-def checkError(data):
-	pass
 
 
 

@@ -11,7 +11,7 @@ def doInput(data):
 	pass
 
 def bootResponder():
-	rospy.loginfo('dude2')
+	rospy.loginfo('inside boot responder')
 	bootPub = rospy.Publisher('boot', BootResponse, queue_size=10)
 	#need a name inside the boot message, so this module will
 	#be able to identify messages sent to itself
@@ -21,7 +21,7 @@ def bootResponder():
 	bootPub.publish(bootString)
 
 def parseReq(data):
-	rospy.loginfo('dude2')
+	rospy.loginfo('inside parse req')
 	thisReq = data.request
 	
 	rospy.loginfo(data.request)
@@ -41,7 +41,7 @@ def theSubscriber():
 	#listen to the two topics coming from the robot brain
 	rospy.Subscriber('reqs', Request, parseReq)
 	rospy.Subscriber('inputs', Input, doInput)
-	rospy.loginfo('dude1')
+	rospy.loginfo('this is Subscriber')
 	rospy.spin()
 
 

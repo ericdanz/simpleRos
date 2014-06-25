@@ -11,11 +11,11 @@ def doInput(data):
 	pass
 
 def bootResponder():
-	rospy.loginfo('dude2')
+	rospy.loginfo('dude3')
 	bootPub = rospy.Publisher('boot', BootResponse, queue_size=10)
 	#need a name inside the boot message, so this module will
 	#be able to identify messages sent to itself
-	bootString.Boot()
+	bootString = Boot()
 	bootString.bootresponse = "This is a boot string containing essential info about the module"
 	rospy.loginfo(bootString)
 	bootPub.publish(bootString)

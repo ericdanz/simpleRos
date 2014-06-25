@@ -13,9 +13,6 @@ def updateModel(data):
 def checkError(data):
 	pass
 
-
-
-
 def init():
 	#init with a boot request from all listening modules
 	rospy.init_node('gatekeeper')
