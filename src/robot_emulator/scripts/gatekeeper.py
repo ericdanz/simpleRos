@@ -19,13 +19,16 @@ def init():
 	reqPub = rospy.Publisher('reqs', Request, queue_size=10)
 	thisRequest = Request()
 	thisRequest.request = 'boot'
-	rospy.loginfo(thisRequest)
-	reqPub.publish(thisRequest)
+	r = rospy.Rate(10)
+	while not rospy.is_shutdown():
+		rospy.loginfo(thisRequest)
+		reqPub.publish(thisRequest)
+		r.sleep()
 
 def theSubscriber():
 	#suscribe to all the topics individually
 	#then call something to respond to any activity
-	r = rospy.Rate(10)
+	
 	rospy.loginfo('this is Subscriber')
 	#listen to the three topics coming from the modules
 	rospy.Subscriber('boot', BootResponse, buildModel)

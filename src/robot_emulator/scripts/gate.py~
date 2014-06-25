@@ -23,10 +23,8 @@ def bootResponder():
 def parseReq(data):
 	rospy.loginfo('inside parse req')
 	thisReq = data.request
-	
-	rospy.loginfo(data.request)
+	rospy.loginfo(thisReq)
 	if thisReq == 'boot':
-		rospy.loginfo(thisReq)
 		bootResponder()
 	
 	#bootResponder()	
@@ -34,7 +32,7 @@ def parseReq(data):
 	#elif thisReq == ''
 
 
-def theSubscriber():
+def subscriber():
 	#suscribe to all the topics individually
 	#then call something to respond to any activity
 	#r = rospy.Rate(10)
@@ -47,5 +45,5 @@ def theSubscriber():
 
 
 if __name__ == '__main__':
-	theSubscriber()
+	subscriber()
 
