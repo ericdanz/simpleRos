@@ -20,10 +20,12 @@ def init():
 	thisRequest = Request()
 	thisRequest.request = 'boot'
 	r = rospy.Rate(10)
-	while not rospy.is_shutdown():
-		rospy.loginfo(thisRequest)
-		reqPub.publish(thisRequest)
-		r.sleep()
+	#while not rospy.is_shutdown():
+	#	rospy.loginfo(thisRequest)
+	#	reqPub.publish(thisRequest)
+	#	r.sleep()
+	rospy.loginfo(thisRequest)
+	reqPub.publish(thisRequest)
 
 def theSubscriber():
 	#suscribe to all the topics individually
