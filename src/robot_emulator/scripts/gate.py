@@ -31,7 +31,7 @@ class Gate:
 		#need a name inside the boot message, so this module will
 		#be able to identify messages sent to itself
 		bootString = BootResponse()
-		bootString.gatenumber = 1
+		bootString.gatenumber = self.number
 		#self.number
 		bootString.gatetype = "locomotion"
 		bootPub.publish(bootString)

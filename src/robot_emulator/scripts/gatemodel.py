@@ -11,7 +11,6 @@ class GateKeeperModel:
 				g.settype(gate.gtype)
 				replaced = True
 		if not replaced:
-			print 'still doing it'
 			self.gates.append(gate)
 	
 	def __str__(self):
