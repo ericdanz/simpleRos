@@ -15,8 +15,10 @@ def theSubscriber():
 	rospy.spin()
 
 def parseReq(data):
+	rospy.loginfo('dude2')
 	thisReq = data.request
-	rospy.loginfo(data)
+	
+	rospy.loginfo(data.request)
 	if thisReq == 'boot':
 		rospy.loginfo(thisReq)
 		bootResponder()

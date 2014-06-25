@@ -9,7 +9,8 @@ def init():
 	#init with a boot request from all listening modules
 	rospy.init_node('gatekeeper')
 	reqPub = rospy.Publisher('reqs', Request, queue_size=10)
-	thisRequest = 'boot'
+	thisRequest = Request()
+	thisRequest.request = 'boot'
 	rospy.loginfo(thisRequest)
 	reqPub.publish(thisRequest)
 
