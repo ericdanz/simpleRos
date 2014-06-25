@@ -1,1 +1,1 @@
-string bootresponse
+string gatetype

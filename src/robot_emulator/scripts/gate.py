@@ -3,6 +3,7 @@
 from robot_emulator.msg import *
 import rospy
 import sys
+import time
 
 
 class Gate:
@@ -26,12 +27,13 @@ class Gate:
 
 	def bootResponder(self):
 		rospy.loginfo('inside boot responder')
-		bootPub = rospy.Publisher('boot', BootResponse, queue_size=10)
+		bootPub = rospy.Publisher('boot', BootResponse, queue_size=10, latch=True)
 		#need a name inside the boot message, so this module will
 		#be able to identify messages sent to itself
 		bootString = BootResponse()
-		bootString.bootresponse = "This is a boot string containing essential info about the module"
+		bootString.gatetype = "locomotion"
 		bootPub.publish(bootString)
+		
 
 if __name__ == '__main__':
 	rospy.init_node('gate', anonymous=True)

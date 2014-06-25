@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from robot_emulator.msg import *
+from gatemodel import *
 import rospy
 import sys
 
@@ -25,7 +26,8 @@ class Gatekeeper:
 		reqPub.publish(thisRequest)	
 	'''
 	def buildModel(self,data):
-		rospy.loginfo(data.bootresponse)
+		rospy.loginfo(data.gatetype)
+		
 
 	def updateModel(self,data):
 		pass

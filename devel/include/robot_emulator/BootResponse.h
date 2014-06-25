@@ -57,16 +57,16 @@ struct BootResponse_
   typedef BootResponse_<ContainerAllocator> Type;
 
   BootResponse_()
-    : bootresponse()  {
+    : gatetype()  {
     }
   BootResponse_(const ContainerAllocator& _alloc)
-    : bootresponse(_alloc)  {
+    : gatetype(_alloc)  {
     }
 
 
 
-   typedef std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other >  _bootresponse_type;
-  _bootresponse_type bootresponse;
+   typedef std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other >  _gatetype_type;
+  _gatetype_type gatetype;
 
 
 
@@ -145,12 +145,12 @@ struct MD5Sum< ::robot_emulator::BootResponse_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "17491dfb5996f13e914f5d2209de56b8";
+    return "83703fe760d68777d2fe1cc8d6241172";
   }
 
   static const char* value(const ::robot_emulator::BootResponse_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x17491dfb5996f13eULL;
-  static const uint64_t static_value2 = 0x914f5d2209de56b8ULL;
+  static const uint64_t static_value1 = 0x83703fe760d68777ULL;
+  static const uint64_t static_value2 = 0xd2fe1cc8d6241172ULL;
 };
 
 template<class ContainerAllocator>
@@ -169,7 +169,7 @@ struct Definition< ::robot_emulator::BootResponse_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "string bootresponse\n\
+    return "string gatetype\n\
 ";
   }
 
@@ -188,7 +188,7 @@ namespace serialization
   {
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
-      stream.next(m.bootresponse);
+      stream.next(m.gatetype);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER;
@@ -207,8 +207,8 @@ struct Printer< ::robot_emulator::BootResponse_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::robot_emulator::BootResponse_<ContainerAllocator>& v)
   {
-    s << indent << "bootresponse: ";
-    Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.bootresponse);
+    s << indent << "gatetype: ";
+    Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.gatetype);
   }
 };
 
