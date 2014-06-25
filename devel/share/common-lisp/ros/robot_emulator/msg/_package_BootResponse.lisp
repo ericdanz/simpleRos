@@ -1,4 +1,6 @@
 (cl:in-package robot_emulator-msg)
-(cl:export '(GATETYPE-VAL
+(cl:export '(GATENUMBER-VAL
+          GATENUMBER
+          GATETYPE-VAL
           GATETYPE
 ))

@@ -57,13 +57,18 @@ struct BootResponse_
   typedef BootResponse_<ContainerAllocator> Type;
 
   BootResponse_()
-    : gatetype()  {
+    : gatenumber(0)
+    , gatetype()  {
     }
   BootResponse_(const ContainerAllocator& _alloc)
-    : gatetype(_alloc)  {
+    : gatenumber(0)
+    , gatetype(_alloc)  {
     }
 
 
+
+   typedef int64_t _gatenumber_type;
+  _gatenumber_type gatenumber;
 
    typedef std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other >  _gatetype_type;
   _gatetype_type gatetype;
@@ -145,12 +150,12 @@ struct MD5Sum< ::robot_emulator::BootResponse_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "83703fe760d68777d2fe1cc8d6241172";
+    return "67c9310323a0ac0f1d0138ae96965614";
   }
 
   static const char* value(const ::robot_emulator::BootResponse_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x83703fe760d68777ULL;
-  static const uint64_t static_value2 = 0xd2fe1cc8d6241172ULL;
+  static const uint64_t static_value1 = 0x67c9310323a0ac0fULL;
+  static const uint64_t static_value2 = 0x1d0138ae96965614ULL;
 };
 
 template<class ContainerAllocator>
@@ -169,7 +174,8 @@ struct Definition< ::robot_emulator::BootResponse_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "string gatetype\n\
+    return "int64 gatenumber\n\
+string gatetype\n\
 ";
   }
 
@@ -188,6 +194,7 @@ namespace serialization
   {
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
+      stream.next(m.gatenumber);
       stream.next(m.gatetype);
     }
 
@@ -207,6 +214,8 @@ struct Printer< ::robot_emulator::BootResponse_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::robot_emulator::BootResponse_<ContainerAllocator>& v)
   {
+    s << indent << "gatenumber: ";
+    Printer<int64_t>::stream(s, indent + "  ", v.gatenumber);
     s << indent << "gatetype: ";
     Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.gatetype);
   }

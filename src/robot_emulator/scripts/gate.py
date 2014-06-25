@@ -8,11 +8,11 @@ import time
 
 class Gate:
 
-	def __init__(self):
+	def __init__(self, gnumber=1):
 		rospy.Subscriber('reqs', Request, self.parseReq)
 		rospy.Subscriber('inputs', Input, self.doInput)
+		self.number = gnumber
 		
-
 	def parseReq(self,data):
 		rospy.loginfo('this is parse Req')
 		thisReq = data.request
@@ -31,6 +31,8 @@ class Gate:
 		#need a name inside the boot message, so this module will
 		#be able to identify messages sent to itself
 		bootString = BootResponse()
+		bootString.gatenumber = 1
+		#self.number
 		bootString.gatetype = "locomotion"
 		bootPub.publish(bootString)
 		
