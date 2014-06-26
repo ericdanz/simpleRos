@@ -57,21 +57,21 @@ struct BootResponse_
   typedef BootResponse_<ContainerAllocator> Type;
 
   BootResponse_()
-    : gatenumber(0)
-    , gatetype()  {
+    : modulenumber(0)
+    , moduletype()  {
     }
   BootResponse_(const ContainerAllocator& _alloc)
-    : gatenumber(0)
-    , gatetype(_alloc)  {
+    : modulenumber(0)
+    , moduletype(_alloc)  {
     }
 
 
 
-   typedef int64_t _gatenumber_type;
-  _gatenumber_type gatenumber;
+   typedef int64_t _modulenumber_type;
+  _modulenumber_type modulenumber;
 
-   typedef std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other >  _gatetype_type;
-  _gatetype_type gatetype;
+   typedef std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other >  _moduletype_type;
+  _moduletype_type moduletype;
 
 
 
@@ -150,12 +150,12 @@ struct MD5Sum< ::robot_emulator::BootResponse_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "67c9310323a0ac0f1d0138ae96965614";
+    return "7ed1ea0cf1ef59caf9b63d3b9f5a8f15";
   }
 
   static const char* value(const ::robot_emulator::BootResponse_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x67c9310323a0ac0fULL;
-  static const uint64_t static_value2 = 0x1d0138ae96965614ULL;
+  static const uint64_t static_value1 = 0x7ed1ea0cf1ef59caULL;
+  static const uint64_t static_value2 = 0xf9b63d3b9f5a8f15ULL;
 };
 
 template<class ContainerAllocator>
@@ -174,8 +174,8 @@ struct Definition< ::robot_emulator::BootResponse_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "int64 gatenumber\n\
-string gatetype\n\
+    return "int64 modulenumber\n\
+string moduletype\n\
 ";
   }
 
@@ -194,8 +194,8 @@ namespace serialization
   {
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
-      stream.next(m.gatenumber);
-      stream.next(m.gatetype);
+      stream.next(m.modulenumber);
+      stream.next(m.moduletype);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER;
@@ -214,10 +214,10 @@ struct Printer< ::robot_emulator::BootResponse_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::robot_emulator::BootResponse_<ContainerAllocator>& v)
   {
-    s << indent << "gatenumber: ";
-    Printer<int64_t>::stream(s, indent + "  ", v.gatenumber);
-    s << indent << "gatetype: ";
-    Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.gatetype);
+    s << indent << "modulenumber: ";
+    Printer<int64_t>::stream(s, indent + "  ", v.modulenumber);
+    s << indent << "moduletype: ";
+    Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.moduletype);
   }
 };
 

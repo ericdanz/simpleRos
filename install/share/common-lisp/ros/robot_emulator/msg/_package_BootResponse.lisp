@@ -1,4 +1,6 @@
 (cl:in-package robot_emulator-msg)
-(cl:export '(BOOTRESPONSE-VAL
-          BOOTRESPONSE
+(cl:export '(MODULENUMBER-VAL
+          MODULENUMBER
+          MODULETYPE-VAL
+          MODULETYPE
 ))

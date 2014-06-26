@@ -57,16 +57,21 @@ struct BootResponse_
   typedef BootResponse_<ContainerAllocator> Type;
 
   BootResponse_()
-    : bootresponse()  {
+    : modulenumber(0)
+    , moduletype()  {
     }
   BootResponse_(const ContainerAllocator& _alloc)
-    : bootresponse(_alloc)  {
+    : modulenumber(0)
+    , moduletype(_alloc)  {
     }
 
 
 
-   typedef std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other >  _bootresponse_type;
-  _bootresponse_type bootresponse;
+   typedef int64_t _modulenumber_type;
+  _modulenumber_type modulenumber;
+
+   typedef std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other >  _moduletype_type;
+  _moduletype_type moduletype;
 
 
 
@@ -145,12 +150,12 @@ struct MD5Sum< ::robot_emulator::BootResponse_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "17491dfb5996f13e914f5d2209de56b8";
+    return "7ed1ea0cf1ef59caf9b63d3b9f5a8f15";
   }
 
   static const char* value(const ::robot_emulator::BootResponse_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x17491dfb5996f13eULL;
-  static const uint64_t static_value2 = 0x914f5d2209de56b8ULL;
+  static const uint64_t static_value1 = 0x7ed1ea0cf1ef59caULL;
+  static const uint64_t static_value2 = 0xf9b63d3b9f5a8f15ULL;
 };
 
 template<class ContainerAllocator>
@@ -169,7 +174,8 @@ struct Definition< ::robot_emulator::BootResponse_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "string bootresponse\n\
+    return "int64 modulenumber\n\
+string moduletype\n\
 ";
   }
 
@@ -188,7 +194,8 @@ namespace serialization
   {
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
-      stream.next(m.bootresponse);
+      stream.next(m.modulenumber);
+      stream.next(m.moduletype);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER;
@@ -207,8 +214,10 @@ struct Printer< ::robot_emulator::BootResponse_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::robot_emulator::BootResponse_<ContainerAllocator>& v)
   {
-    s << indent << "bootresponse: ";
-    Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.bootresponse);
+    s << indent << "modulenumber: ";
+    Printer<int64_t>::stream(s, indent + "  ", v.modulenumber);
+    s << indent << "moduletype: ";
+    Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.moduletype);
   }
 };
 
