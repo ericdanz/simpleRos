@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from robot_emulator.msg import *
+from modulemodel import *
 import rospy
 import sys
 import time
