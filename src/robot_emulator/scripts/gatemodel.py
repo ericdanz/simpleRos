@@ -19,13 +19,13 @@ class GateKeeperModel:
 			tempstring = tempstring + 'Gate ' + str(gate.number) + ' ' + gate.gtype + ', '
 		return tempstring
 
-class GateModel:
-	def __init__(self,gtype='None', number=1):
-		self.gtype = gtype
+class Module:
+	def __init__(self,mtype='None', number=1):
+		self.mtype = mtype
 		self.number = number
 
-	def settype(self,gtype):
-		self.gtype = gtype
+	def settype(self,mtype):
+		self.mtype = mtype
 
 	def setnum(self,number):
 		self.number = number
