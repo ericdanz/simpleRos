@@ -8,9 +8,10 @@
 ros::NodeHandle nh;
 
 robot_emulator::BootResponse boot_msg;
-ros::Publisher boot("boot", &boot_msg);
+ros::Publisher bootPub("boot", &boot_msg);
 
-char bootchar[23] = "this is a boot message";
+char bootchar[11] = "locomotion";
+char bootword[5] = "boot";
 
 
 void runMotors( const geometry_msgs::Twist& input_msg){
@@ -19,10 +20,10 @@ void runMotors( const geometry_msgs::Twist& input_msg){
 }
 
 void requests( const robot_emulator::Request& req_msg){
-if(req_msg.request == "boot"){
-   boot_msg.moduletype = bootchar;
+if(req_msg.request[0] == bootword[0]){
+   boot_msg.moduletype = "locomotion";
    boot_msg.modulenumber = 1;
-   boot.publish( &boot_msg );
+   bootPub.publish( &boot_msg );
 }
 
 }
@@ -35,7 +36,7 @@ void setup()
 {
 
   nh.initNode();
-  nh.advertise(boot);
+  nh.advertise(bootPub);
   nh.subscribe(in_sub);
   nh.subscribe(req_sub);
 

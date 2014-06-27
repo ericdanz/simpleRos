@@ -8,7 +8,7 @@ class GateKeeperModel:
 		for g in self.gates:
 			if g.number == gate.number:
 				#replace the older model
-				g.settype(gate.gtype)
+				g.settype(gate.mtype)
 				replaced = True
 		if not replaced:
 			self.gates.append(gate)
@@ -16,7 +16,7 @@ class GateKeeperModel:
 	def __str__(self):
 		tempstring = 'Gates: '
 		for gate in self.gates:
-			tempstring = tempstring + 'Gate ' + str(gate.number) + ' ' + gate.gtype + ', '
+			tempstring = tempstring + 'Gate ' + str(gate.number) + ' ' + gate.mtype + ', '
 		return tempstring
 
 class Module:

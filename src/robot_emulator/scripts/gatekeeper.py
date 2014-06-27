@@ -20,7 +20,7 @@ class Gatekeeper:
 		reqPub.publish(thisRequest)
 
 	def buildModel(self,data):
-		rospy.loginfo(data.moduletype)
+		rospy.loginfo("*"+data.moduletype+"*")
 		#make sure gatetype conforms to known types before creating a gate model
 		if data.moduletype == 'locomotion' or data.moduletype == 'sensor':	
 			modmodel = Module(data.moduletype,data.modulenumber)		
