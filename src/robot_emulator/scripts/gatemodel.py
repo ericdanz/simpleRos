@@ -1,22 +1,22 @@
 class GateKeeperModel:
 	def __init__(self):
-		self.gates = []
+		self.modules = []
 		self.id = 0
-	def addgate(self,gate):
+	def addmodule(self,module):
 		#check for older models at this Gate Number
 		replaced = False		
-		for g in self.gates:
-			if g.number == gate.number:
+		for m in self.modules:
+			if m.number == module.number:
 				#replace the older model
-				g.settype(gate.mtype)
+				m.settype(module.mtype)
 				replaced = True
 		if not replaced:
-			self.gates.append(gate)
+			self.modules.append(module)
 	
 	def __str__(self):
 		tempstring = 'Gates: '
-		for gate in self.gates:
-			tempstring = tempstring + 'Gate ' + str(gate.number) + ' ' + gate.mtype + ', '
+		for mod in self.modules:
+			tempstring = tempstring + 'Module ' + str(mod.number) + ' ' + mod.mtype + ', '
 		return tempstring
 
 class Module:

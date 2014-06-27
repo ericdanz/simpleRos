@@ -2,8 +2,12 @@
 
 from robot_emulator.msg import *
 from gatemodel import *
+from geometry_msgs.msg import Twist
 import rospy
 import sys
+
+fakeTwist = Twist()
+fakeTwist.linear.x = 0.1
 
 class Gatekeeper:
 
@@ -22,9 +26,14 @@ class Gatekeeper:
 	def buildModel(self,data):
 		rospy.loginfo("*"+data.moduletype+"*")
 		#make sure gatetype conforms to known types before creating a gate model
-		if data.moduletype == 'locomotion' or data.moduletype == 'sensor':	
+		if data.moduletype == 'locomotion':	
 			modmodel = Module(data.moduletype,data.modulenumber)		
-			self.gkmodel.addgate(modmodel)
+			self.gkmodel.addmodule(modmodel)
+			#this is a hack to send a Twist and test the system
+			self.sendInput(Module,fakeTwist)
+		elif data.moduletype == 'sensor':
+			modmodel = Module(data.moduletype, data.modulenumber)
+			self.gkmodel.addmodule(modmodel)		
 		print self.gkmodel
 
 	def updateModel(self,data):
@@ -37,6 +46,15 @@ class Gatekeeper:
 		#this will take a message from the rest of the system, sort and translate 
 		#it and send it off to the gates		
 		pass
+	
+	def sendInput(self,Module,mInput):
+		if Module.mtype == 'locomotion':
+			lInPub = rospy.Publisher('locomotionInputs', Twist, queue_size=2, latch=True)
+			thisLInput = Twist()
+			#should probably be a try or something here
+			thisLInput = mInput
+			rospy.loginfo("Sending Loc Input")
+			lInPub.publish(thisLInput)
 
 
 if __name__ == '__main__':
