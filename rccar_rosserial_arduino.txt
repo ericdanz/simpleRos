@@ -1,18 +1,27 @@
 #include <ros.h>
 #include <AFMotor.h>
 #include <geometry_msgs/Twist.h>
+#include <std_msgs/String.h>
 
 
 ros::NodeHandle nh;
 
 std_msgs::String boot_msg;
-ros::Publisher boot('boot', &boot_msg);
+ros::Publisher boot("boot", &boot_msg);
+
+char bootchar[22] = "this is a boot message";
+
 
 void runMotors( const geometry_msgs::Twist& input_msg){
-   digitalWrite(13, HIGH-digitalRead(13)); 
+   
+
 }
 
 void requests( const std_msgs::String& req_msg){
+if(req_msg.data =='boot'){
+   boot_msg.data = bootchar;
+   boot.publish( &boot_msg );
+}
 
 }
 
@@ -22,8 +31,17 @@ ros::Subscriber<std_msgs::String> req_sub("reqs", &requests );
 
 void setup()
 {
+
   nh.initNode();
   nh.advertise(boot);
   nh.subscribe(in_sub);
   nh.subscribe(req_sub);
+
+}
+
+void loop()
+{
+  
+  nh.spinOnce();
+  delay(100);
 }
