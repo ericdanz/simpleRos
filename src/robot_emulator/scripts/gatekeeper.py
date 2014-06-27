@@ -5,9 +5,11 @@ from gatemodel import *
 from geometry_msgs.msg import Twist
 import rospy
 import sys
+import time
 
 fakeTwist = Twist()
-fakeTwist.linear.x = 0.1
+#fakeTwist.linear.x = 100
+fakeTwist.angular.z = 200
 
 class Gatekeeper:
 
@@ -30,7 +32,7 @@ class Gatekeeper:
 			modmodel = Module(data.moduletype,data.modulenumber)		
 			self.gkmodel.addmodule(modmodel)
 			#this is a hack to send a Twist and test the system
-			self.sendInput(Module,fakeTwist)
+			self.sendInput(modmodel,fakeTwist)
 		elif data.moduletype == 'sensor':
 			modmodel = Module(data.moduletype, data.modulenumber)
 			self.gkmodel.addmodule(modmodel)		
@@ -50,11 +52,24 @@ class Gatekeeper:
 	def sendInput(self,Module,mInput):
 		if Module.mtype == 'locomotion':
 			lInPub = rospy.Publisher('locomotionInputs', Twist, queue_size=2, latch=True)
+			#clear the pipes
+			newLInput = Twist()
+			rospy.loginfo("Sending Loc Input")
+			lInPub.publish(newLInput)
+			lInPub.publish(newLInput)
 			thisLInput = Twist()
+
+
 			#should probably be a try or something here
 			thisLInput = mInput
 			rospy.loginfo("Sending Loc Input")
 			lInPub.publish(thisLInput)
+
+			#then stop the motors
+			time.sleep(2)
+			newLInput = Twist()
+			rospy.loginfo("Sending Loc Input")
+			lInPub.publish(newLInput)
 
 
 if __name__ == '__main__':

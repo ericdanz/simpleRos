@@ -14,7 +14,7 @@ class GateKeeperModel:
 			self.modules.append(module)
 	
 	def __str__(self):
-		tempstring = 'Gates: '
+		tempstring = 'Modules: '
 		for mod in self.modules:
 			tempstring = tempstring + 'Module ' + str(mod.number) + ' ' + mod.mtype + ', '
 		return tempstring
